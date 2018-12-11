@@ -1,0 +1,40 @@
+server:
+  port: 8004
+
+spring:
+    datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/weixin?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: 123456
+        # 使用c3p0数据源
+        type: com.mchange.v2.c3p0.ComboPooledDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    mvc:
+      view:
+        # 定位static下的目录
+        prefix: /
+        # 给返回的页面添加后缀名 .html
+        suffix: .html
+
+mybatis:
+   mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+   type-aliases-package: com.joey.springboot.model  # 注意：对应实体类的路径
+
+wechat:
+  AppId: 1
+  AppCode: 2
+

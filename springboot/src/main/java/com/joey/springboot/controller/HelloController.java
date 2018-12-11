@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.joey.springboot.model.Book;
 import com.joey.springboot.service.BookService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/hello")
@@ -33,12 +34,14 @@ public class HelloController {
 
 
 	@RequestMapping("/say")
+	@ResponseBody
 	public List<Book> hello() {
 		List<Book> books = bookService.getAllBooks();
 		return books;
 	}
 
 	@RequestMapping("/get")
+	@ResponseBody
 	public String get() {
 		Map book = bookService.getBooksById(1);
 		book.get("id");
@@ -48,6 +51,7 @@ public class HelloController {
 	}
 
 	//获取配置文件参数
+	@ResponseBody
 	@RequestMapping("/weixin")
 	public String weixin(){
 	    System.out.print(config.getPort());
